@@ -4,17 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MOON GAZER | Premium Airdrop Platform</title>
+<title>MOON GAZER ($MGZR)</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
+<script src="https://s3.tradingview.com/tv.js"></script>
+
 <style>
+
+:root{
+--bg:#050816;
+--card:rgba(255,255,255,.05);
+--blue:#00d4ff;
+--gold:#ffb700;
+}
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Inter',sans-serif;
+font-family:Inter,sans-serif;
 }
 
 body{
@@ -23,49 +32,40 @@ color:white;
 overflow-x:hidden;
 }
 
-/* BACKGROUND */
-
-.bg{
+body::before{
+content:'';
 position:fixed;
-width:100%;
-height:100%;
-top:0;
-left:0;
-background:url('YOUR-3D-BACKGROUND.jpg') center center/cover;
+inset:0;
+background:url('YOUR_BACKGROUND.jpg') center/cover;
 z-index:-2;
 }
 
-.overlay{
+body::after{
+content:'';
 position:fixed;
-width:100%;
-height:100%;
-background:
-linear-gradient(
-180deg,
-rgba(0,0,0,.3),
-rgba(0,0,0,.7)
-);
+inset:0;
+background:rgba(0,0,0,.45);
 z-index:-1;
 }
 
 /* NAVBAR */
 
 nav{
+position:fixed;
+top:0;
 width:100%;
 padding:20px 8%;
 display:flex;
 justify-content:space-between;
 align-items:center;
 backdrop-filter:blur(20px);
-position:fixed;
-top:0;
 z-index:1000;
 }
 
 .logo{
 font-size:28px;
 font-weight:800;
-letter-spacing:2px;
+color:white;
 }
 
 .menu{
@@ -74,14 +74,8 @@ gap:25px;
 }
 
 .menu a{
-text-decoration:none;
 color:white;
-font-weight:500;
-transition:.3s;
-}
-
-.menu a:hover{
-color:#00d9ff;
+text-decoration:none;
 }
 
 /* HERO */
@@ -89,84 +83,33 @@ color:#00d9ff;
 .hero{
 min-height:100vh;
 display:flex;
-justify-content:center;
 align-items:center;
-padding:120px 10%;
+padding:120px 8%;
 }
 
-.hero-content{
-max-width:1200px;
-width:100%;
+.hero-grid{
 display:grid;
 grid-template-columns:1fr 1fr;
 gap:50px;
 align-items:center;
+width:100%;
 }
 
-.token-area{
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.token{
-width:320px;
-height:320px;
-border-radius:50%;
-background:
-radial-gradient(circle at top,
-#00d9ff,
-#001d3d);
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:55px;
-font-weight:800;
-box-shadow:
-0 0 50px #00d9ff,
-0 0 120px rgba(0,217,255,.4);
-animation:float 4s ease-in-out infinite;
-}
-
-@keyframes float{
-50%{
-transform:translateY(-20px);
-}
-}
-
-.hero-text h1{
-font-size:70px;
-font-weight:800;
+.hero h1{
+font-size:90px;
 line-height:1;
 }
 
-.hero-text span{
-color:#00d9ff;
+.hero span{
+color:var(--blue);
 }
 
-.hero-text p{
-margin-top:25px;
+.hero p{
+margin-top:20px;
 font-size:18px;
-opacity:.8;
-line-height:1.7;
+opacity:.85;
+line-height:1.8;
 }
-
-.price-box{
-margin-top:25px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.1);
-padding:20px;
-border-radius:20px;
-backdrop-filter:blur(15px);
-}
-
-.price{
-font-size:36px;
-font-weight:800;
-color:#00ffae;
-}
-
-/* BUTTONS */
 
 .btns{
 display:flex;
@@ -176,51 +119,143 @@ margin-top:35px;
 
 .btn{
 padding:15px 30px;
-border:none;
 border-radius:15px;
-cursor:pointer;
-font-size:16px;
-font-weight:700;
 text-decoration:none;
-transition:.3s;
+font-weight:700;
 }
 
 .primary{
-background:#00d9ff;
+background:var(--blue);
 color:black;
 }
 
-.primary:hover{
-transform:translateY(-4px);
-}
-
 .secondary{
-background:transparent;
 border:1px solid rgba(255,255,255,.2);
 color:white;
 }
 
-.secondary:hover{
-background:white;
-color:black;
+.token{
+width:380px;
+height:380px;
+border-radius:50%;
+margin:auto;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:60px;
+font-weight:800;
+background:
+radial-gradient(circle,#00d4ff,#001e3d);
+box-shadow:
+0 0 50px #00d4ff,
+0 0 150px rgba(0,212,255,.5);
+
+animation:spin 15s linear infinite;
+}
+
+@keyframes spin{
+from{transform:rotateY(0)}
+to{transform:rotateY(360deg)}
+}
+
+/* SECTIONS */
+
+section{
+padding:100px 8%;
+}
+
+.title{
+font-size:48px;
+margin-bottom:40px;
+text-align:center;
+}
+
+/* STATS */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:20px;
+}
+
+.card{
+background:var(--card);
+padding:25px;
+border-radius:25px;
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.1);
+}
+
+.card h3{
+font-size:14px;
+opacity:.7;
+}
+
+.card p{
+margin-top:10px;
+font-size:24px;
+font-weight:800;
+}
+
+/* ABOUT */
+
+.about{
+max-width:1000px;
+margin:auto;
+text-align:center;
+line-height:1.9;
+font-size:18px;
+}
+
+/* TOKENOMICS */
+
+.tokenomics{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.alloc{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.alloc div{
+padding:18px;
+background:var(--card);
+border-radius:15px;
+}
+
+/* CHART */
+
+#tradingview{
+height:700px;
+border-radius:30px;
+overflow:hidden;
+}
+
+/* ROADMAP */
+
+.roadmap{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.phase{
+background:var(--card);
+padding:30px;
+border-radius:20px;
 }
 
 /* PARTNERS */
 
 .partners{
-padding:80px 10%;
-text-align:center;
-}
-
-.partners h2{
-font-size:40px;
-margin-bottom:50px;
-}
-
-.partner-wrap{
 display:flex;
 justify-content:center;
-gap:40px;
+gap:30px;
 flex-wrap:wrap;
 }
 
@@ -228,20 +263,14 @@ flex-wrap:wrap;
 width:140px;
 height:140px;
 border-radius:50%;
-background:rgba(255,255,255,.05);
 display:flex;
-justify-content:center;
 align-items:center;
-font-weight:700;
-font-size:22px;
-backdrop-filter:blur(15px);
-border:1px solid rgba(255,255,255,.1);
-
-transform-style:preserve-3d;
-animation:spin 10s linear infinite;
+justify-content:center;
+background:var(--card);
+animation:orbit 10s linear infinite;
 }
 
-@keyframes spin{
+@keyframes orbit{
 from{
 transform:rotateY(0deg);
 }
@@ -250,74 +279,26 @@ transform:rotateY(360deg);
 }
 }
 
-/* CHART */
+/* FOOTBALL */
 
-.chart-section{
-padding:80px 10%;
-}
-
-.chart-title{
-font-size:40px;
-margin-bottom:25px;
-}
-
-.chart{
-height:500px;
-background:
-linear-gradient(
-135deg,
-rgba(255,255,255,.05),
-rgba(255,255,255,.02)
-);
-border-radius:25px;
-backdrop-filter:blur(20px);
-border:1px solid rgba(255,255,255,.1);
-overflow:hidden;
-}
-
-iframe{
-width:100%;
-height:100%;
-border:none;
-}
-
-/* SOCIAL */
-
-.social{
-padding:80px 10%;
+.prediction{
 text-align:center;
 }
 
-.social h2{
-font-size:40px;
-margin-bottom:30px;
-}
-
-.social-links{
-display:flex;
-justify-content:center;
-gap:25px;
-flex-wrap:wrap;
-}
-
-.social-links a{
-padding:15px 25px;
-background:rgba(255,255,255,.05);
-border-radius:15px;
-text-decoration:none;
-color:white;
-transition:.3s;
-}
-
-.social-links a:hover{
-background:#00d9ff;
+.prediction a{
+display:inline-block;
+padding:20px 40px;
+background:var(--gold);
 color:black;
+font-weight:700;
+border-radius:20px;
+text-decoration:none;
 }
 
 /* FOOTER */
 
 footer{
-padding:40px;
+padding:50px;
 text-align:center;
 opacity:.6;
 }
@@ -326,24 +307,24 @@ opacity:.6;
 
 @media(max-width:900px){
 
-.hero-content{
+.hero-grid{
 grid-template-columns:1fr;
-text-align:center;
 }
 
-.hero-text h1{
-font-size:50px;
+.hero h1{
+font-size:60px;
 }
 
-.token{
-width:250px;
-height:250px;
-font-size:40px;
+.stats{
+grid-template-columns:1fr 1fr;
 }
 
-.btns{
-justify-content:center;
-flex-wrap:wrap;
+.tokenomics{
+grid-template-columns:1fr;
+}
+
+.roadmap{
+grid-template-columns:1fr;
 }
 
 }
@@ -353,65 +334,51 @@ flex-wrap:wrap;
 
 <body>
 
-<div class="bg"></div>
-<div class="overlay"></div>
-
 <nav>
 
 <div class="logo">MOON GAZER</div>
 
 <div class="menu">
 <a href="#">Home</a>
-<a href="#">Airdrop</a>
+<a href="#">About</a>
+<a href="#">Tokenomics</a>
 <a href="#">Roadmap</a>
-<a href="#">Partners</a>
-<a href="#">Contact</a>
+<a href="#">Chart</a>
 </div>
 
 </nav>
 
 <section class="hero">
 
-<div class="hero-content">
+<div class="hero-grid">
 
-<div class="hero-text">
+<div>
 
-<h1>
-MOON <span>GAZER</span>
-</h1>
+<h1>MOON <span>GAZER</span></h1>
 
 <p>
-A premium next-generation crypto ecosystem built for
-community growth, airdrops, rewards, and future DeFi expansion.
-Secure your position before public launch.
+Moon Gazer is a next-generation decentralized ecosystem
+designed to empower communities through rewards,
+innovation and sustainable long-term growth.
 </p>
-
-<div class="price-box">
-Current Price
-<div class="price">
-$0.0000025 / MGZR
-</div>
-</div>
 
 <div class="btns">
 
-<a href="https://example.com"
+<a href="https://your-link.com"
 target="_blank"
 class="btn primary">
 Learn More
 </a>
 
-<a href="football-predictions.html"
+<a href="football.html"
 target="_blank"
 class="btn secondary">
-Football Predictions
+Football Prediction
 </a>
 
 </div>
 
 </div>
-
-<div class="token-area">
 
 <div class="token">
 MGZR
@@ -419,15 +386,129 @@ MGZR
 
 </div>
 
+</section>
+
+<section>
+
+<h2 class="title">Live Statistics</h2>
+
+<div class="stats">
+
+<div class="card">
+<h3>Price</h3>
+<p>$0.0000025</p>
+</div>
+
+<div class="card">
+<h3>Market Cap</h3>
+<p>TBA</p>
+</div>
+
+<div class="card">
+<h3>Chain</h3>
+<p>BASE</p>
+</div>
+
+<div class="card">
+<h3>Airdrop</h3>
+<p>5%</p>
+</div>
+
+<div class="card">
+<h3>Holders</h3>
+<p>TBA</p>
+</div>
+
 </div>
 
 </section>
 
-<section class="partners">
+<section>
 
-<h2>Strategic Partnerships</h2>
+<h2 class="title">About Moon Gazer</h2>
 
-<div class="partner-wrap">
+<div class="about">
+
+Moon Gazer was built to connect innovation,
+community participation and long-term value creation.
+Our vision is to become one of the most recognized
+community-driven ecosystems on Base Network while
+delivering transparency, security and sustainable growth.
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">Tokenomics</h2>
+
+<div class="tokenomics">
+
+<div class="alloc">
+
+<div>40% Liquidity</div>
+<div>25% Ecosystem</div>
+<div>15% Marketing</div>
+<div>10% Development</div>
+<div>5% Airdrop</div>
+<div>5% Reserve</div>
+
+</div>
+
+<div>
+
+<canvas id="pie"></canvas>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">MGZR Price Chart</h2>
+
+<div id="tradingview"></div>
+
+</section>
+
+<section>
+
+<h2 class="title">Roadmap</h2>
+
+<div class="roadmap">
+
+<div class="phase">
+<h3>Phase 1</h3>
+Website Launch
+</div>
+
+<div class="phase">
+<h3>Phase 2</h3>
+Airdrop Campaign
+</div>
+
+<div class="phase">
+<h3>Phase 3</h3>
+DEX Listing
+</div>
+
+<div class="phase">
+<h3>Phase 4</h3>
+Ecosystem Expansion
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="title">Strategic Partners</h2>
+
+<div class="partners">
 
 <div class="partner">BASE</div>
 <div class="partner">POLYGON</div>
@@ -438,45 +519,37 @@ MGZR
 
 </section>
 
-<section class="chart-section">
+<section class="prediction">
 
-<div class="chart-title">
-MGZR Price Chart
-</div>
+<h2 class="title">Football Prediction Arena</h2>
 
-<div class="chart">
-
-<iframe
-src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_chart&symbol=BINANCE:BTCUSDT&interval=60&theme=dark">
-</iframe>
-
-</div>
-
-</section>
-
-<section class="social">
-
-<h2>Join The Community</h2>
-
-<div class="social-links">
-
-<a href="wangyuemongazer">X / Twitter</a>
-
-<a href="https://t.me/wangyuemoongazer">Telegram</a>
-
-<a href="#">Discord</a>
-
-<a href="#">Medium</a>
-
-<a href="#">GitHub</a>
-
-</div>
+<a href="football.html" target="_blank">
+ENTER ARENA
+</a>
 
 </section>
 
 <footer>
-© 2026 MOON GAZER • All Rights Reserved
+
+MOON GAZER © 2026
+Looking Beyond The Moon
+
 </footer>
 
+<script>
+
+new TradingView.widget({
+"autosize":true,
+"symbol":"BINANCE:BTCUSDT",
+"interval":"60",
+"timezone":"Etc/UTC",
+"theme":"dark",
+"style":"1",
+"locale":"en",
+"container_id":"tradingview"
+});
+
+</script>
+
 </body>
-  </html>
+</html>
